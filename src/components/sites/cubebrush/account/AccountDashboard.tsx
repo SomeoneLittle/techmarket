@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { asset } from "@/lib/asset";
 import { ProductCard } from "../ProductCard";
 import { products } from "../data/products";
@@ -34,8 +34,11 @@ export function AccountDashboard() {
   const router = useRouter();
   const [tab, setTab] = useState<TabId>("library");
 
+  // Guests landing here go to sign in; signing out from this page goes home instead (handled by the button).
+  const hadUser = useRef(false);
   useEffect(() => {
-    if (user === null) router.replace("/users/sign_in");
+    if (user) hadUser.current = true;
+    else if (user === null && !hadUser.current) router.replace("/users/sign_in");
   }, [user, router]);
 
   if (!user) {

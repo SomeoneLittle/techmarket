@@ -31,7 +31,7 @@ export function HeaderInner({ marketOpen, onToggleMarket, onCloseMarket, onToggl
             <use href={asset("/sites/cubebrush/icons.svg#chevron-down-ff92e9c4-ns")} />
           </svg>
         </button>
-        <div className={"dh-market-host" + (marketOpen ? " is-open" : "")} hidden={!marketOpen} id="desktop-marketplace-menu" inert={!marketOpen} onClick={(e) => { if ((e.target as HTMLElement).closest("a") || (e.target as HTMLElement).classList.contains("dh-market-backdrop")) onCloseMarket(); }}>
+        <div className="dh-market-host" hidden id="desktop-marketplace-menu" inert onClick={(e) => { if ((e.target as HTMLElement).closest("a[href]")) onCloseMarket(); }}>
           <div aria-hidden="true" className="dh-market-backdrop" />
           <nav aria-label="Browse the marketplace" className="dh-market-panel">
             <div className="dh-market-head">
@@ -51,7 +51,7 @@ export function HeaderInner({ marketOpen, onToggleMarket, onCloseMarket, onToggl
                 </svg>
               </button>
             </div>
-            <a className="cb-official-store-link" href="https://cubebrush.co/store">
+            <Link className="cb-official-store-link" href="/store">
               <span className="cb-official-store-mark">
                 <img alt="" width="24" height="24" src={asset("/sites/cubebrush/img/logo-mark-white-1065c7c23a516247b4dc0688-d7c8e97b.png")} />
               </span>
@@ -64,7 +64,7 @@ export function HeaderInner({ marketOpen, onToggleMarket, onCloseMarket, onToggl
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <use href={asset("/sites/cubebrush/icons.svg#arrow-right-906d0151-ns")} />
               </svg>
-            </a>
+            </Link>
             <Link className="dh-market-feature" href="/theartgun/products/rwe03q/gunquin-the-virtual-art-mannequin">
               <img alt="" height="90" src={asset("/sites/cubebrush/img/497f1dfb0b-d4ee8fd9.jpg")} width="160" />
               <span className="dh-market-feature-copy">
@@ -369,15 +369,15 @@ export function HeaderInner({ marketOpen, onToggleMarket, onCloseMarket, onToggl
             </div>
           </nav>
         </div>
-        <a href="https://cubebrush.co/blog">
+        <Link href="/blog">
           Blog
-        </a>
-        <a href="https://cubebrush.co/open_store">
+        </Link>
+        <Link href="/open_store">
           Sell
-        </a>
-        <a href="https://cubebrush.co/become_partner">
+        </Link>
+        <Link href="/become_partner">
           Earn
-        </a>
+        </Link>
       </nav>
       <form aria-label="Site search" className="dh-search" role="search" onSubmit={onSearch}>
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -419,7 +419,7 @@ export function HeaderInner({ marketOpen, onToggleMarket, onCloseMarket, onToggl
             <Link className="dh-signin" data-cb-text="" href="/users/sign_in">
               Sign in
             </Link>
-            <Link className="dh-signup" data-cb-btn="" href="/users/sign_in">
+            <Link className="dh-signup" data-cb-btn="" href="/users/sign_up">
               Create account
             </Link>
           </>

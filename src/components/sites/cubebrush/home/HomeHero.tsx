@@ -54,7 +54,7 @@ export function HomeHero() {
                 </span>
               </div>
             </Link>
-            <a className="dh-intent" data-intent="sell" href="https://cubebrush.co/open_store" style={{"--tint": "#7bc178", "--grad": "linear-gradient(155deg,rgba(123,193,120,.18),rgba(95,167,86,.08) 65%,transparent)"} as React.CSSProperties}>
+            <Link className="dh-intent" data-intent="sell" style={{"--tint": "#7bc178", "--grad": "linear-gradient(155deg,rgba(123,193,120,.18),rgba(95,167,86,.08) 65%,transparent)"} as React.CSSProperties} href="/open_store">
               <div className="dh-intent-art">
                 <img alt="" height="1300" loading="eager" src={asset("/sites/cubebrush/img/home-hero-sell-2af1682bb318beb94b810ad12-0bd84b99.svg")} width="1500" />
               </div>
@@ -75,8 +75,8 @@ export function HomeHero() {
                   </svg>
                 </span>
               </div>
-            </a>
-            <a className="dh-intent" data-intent="earn" href="https://cubebrush.co/become_partner" style={{"--tint": "#f3a649", "--grad": "linear-gradient(155deg,rgba(243,166,73,.2),rgba(232,151,18,.08) 65%,transparent)"} as React.CSSProperties}>
+            </Link>
+            <Link className="dh-intent" data-intent="earn" style={{"--tint": "#f3a649", "--grad": "linear-gradient(155deg,rgba(243,166,73,.2),rgba(232,151,18,.08) 65%,transparent)"} as React.CSSProperties} href="/become_partner">
               <div className="dh-intent-art">
                 <img alt="" height="600" loading="eager" src={asset("/sites/cubebrush/img/home-hero-partner-c1934b86bb6910fa4ea986-477163de.svg")} width="800" />
               </div>
@@ -97,7 +97,7 @@ export function HomeHero() {
                   </svg>
                 </span>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

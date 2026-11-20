@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { asset } from "@/lib/asset";
 
 export function HomeSellBand() {
@@ -20,15 +21,15 @@ export function HomeSellBand() {
               Curated. Apply once, then list freely. Keep up to 95% of every direct sale and reach 1,673,926 members from day one.
             </p>
             <div className="dh-band-actions">
-              <a className="dh-band-btn" href="https://cubebrush.co/open_store">
+              <Link className="dh-band-btn" href="/open_store">
                 Apply to sell
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <use href={asset("/sites/cubebrush/icons.svg#glyph-d74dc90e-ns")} />
                 </svg>
-              </a>
-              <a className="dh-band-link" href="https://cubebrush.co/become_partner">
+              </Link>
+              <Link className="dh-band-link" href="/become_partner">
                 Earn as a partner →
-              </a>
+              </Link>
             </div>
           </div>
           <div className="dh-band-art">

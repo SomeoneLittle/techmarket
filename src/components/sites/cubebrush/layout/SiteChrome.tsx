@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { asset } from "@/lib/asset";
 import { HeaderInner } from "./HeaderInner";
 import { signOut, useSession } from "../state/session";
@@ -51,18 +51,109 @@ function useBodyState(isUser: boolean | undefined) {
   }, [isUser]);
 }
 
+const MARKET_MOTION_MS = 180;
+
+/**
+ * Port of the source's catalog-nav controller: the mega menu panel is positioned
+ * under the header (--market-top) and aligned with the trigger (--market-left).
+ */
+function useMarketMenu() {
+  const [open, setOpen] = useState(false);
+  const hideTimer = useRef(0);
+
+  const els = () => ({
+    host: document.getElementById("desktop-marketplace-menu"),
+    panel: document.querySelector<HTMLElement>(".dh-market-panel"),
+    trigger: document.querySelector<HTMLElement>(".dh-market-toggle"),
+    chrome: document.querySelector<HTMLElement>(".dh-chrome"),
+  });
+
+  const position = useCallback(() => {
+    const { host, panel, trigger, chrome } = els();
+    if (!host || !panel || !trigger) return;
+    if (chrome) host.style.setProperty("--market-top", `${Math.max(0, chrome.getBoundingClientRect().bottom)}px`);
+    const gutter = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gut")) || 20;
+    const width = panel.getBoundingClientRect().width;
+    const left = Math.max(gutter, Math.min(trigger.getBoundingClientRect().left - 26, document.documentElement.clientWidth - width - gutter));
+    host.style.setProperty("--market-left", `${left}px`);
+  }, []);
+
+  const show = useCallback(() => {
+    const { host, panel } = els();
+    if (!host || !panel) return;
+    window.clearTimeout(hideTimer.current);
+    host.hidden = false;
+    host.inert = false;
+    panel.scrollTop = 0;
+    position();
+    host.classList.add("is-open");
+    setOpen(true);
+  }, [position]);
+
+  const close = useCallback(() => {
+    const { host } = els();
+    if (!host) return;
+    host.classList.remove("is-open");
+    host.inert = true;
+    setOpen(false);
+    window.clearTimeout(hideTimer.current);
+    const ms = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : MARKET_MOTION_MS;
+    hideTimer.current = window.setTimeout(() => {
+      host.hidden = true;
+    }, ms);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      const { panel, trigger } = els();
+      const t = e.target as Node;
+      if (panel?.contains(t) || trigger?.contains(t)) return;
+      close();
+    };
+    const onMove = () => position();
+    document.addEventListener("pointerdown", onDown);
+    window.addEventListener("resize", onMove);
+    window.addEventListener("scroll", onMove, { passive: true });
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("resize", onMove);
+      window.removeEventListener("scroll", onMove);
+    };
+  }, [open, close, position]);
+
+  useEffect(() => () => window.clearTimeout(hideTimer.current), []);
+
+  return { open, toggle: () => (open ? close() : show()), close };
+}
+
+/** Publishes the header height as --cb-chrome-h like the source shell does. */
+function useChromeHeight() {
+  useEffect(() => {
+    const chrome = document.querySelector<HTMLElement>(".dh-chrome");
+    if (!chrome) return;
+    const set = () => document.documentElement.style.setProperty("--cb-chrome-h", `${Math.round(chrome.getBoundingClientRect().bottom)}px`);
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(chrome);
+    return () => ro.disconnect();
+  }, []);
+}
+
 export function Header() {
   const router = useRouter();
   const user = useSession();
-  const [marketOpen, setMarketOpen] = useState(false);
+  const market = useMarketMenu();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const toggleTheme = useTheme();
   useBodyState(user === undefined ? undefined : !!user);
+  useChromeHeight();
+  const closeMarket = market.close;
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setMarketOpen(false);
+        closeMarket();
         setDrawerOpen(false);
       }
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -72,7 +163,7 @@ export function Header() {
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, []);
+  }, [closeMarket]);
 
   const onSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -86,9 +177,9 @@ export function Header() {
       <header className="dh-chrome">
         <div className="dh-chrome-inner">
           <HeaderInner
-            marketOpen={marketOpen}
-            onToggleMarket={() => setMarketOpen((o) => !o)}
-            onCloseMarket={() => setMarketOpen(false)}
+            marketOpen={market.open}
+            onToggleMarket={market.toggle}
+            onCloseMarket={market.close}
             onToggleTheme={toggleTheme}
             onOpenDrawer={() => setDrawerOpen(true)}
             onSearch={onSearch}
@@ -208,7 +299,7 @@ function AccountDrawer({ open, onClose, onToggleTheme }: { open: boolean; onClos
                 </span>
                 <span className="hm-acct-row-label">Sign In</span>
               </Link>
-              <Link className="hm-acct-row" href="/users/sign_in">
+              <Link className="hm-acct-row" href="/users/sign_up">
                 <span className="hm-acct-row-icon">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <use href={icon("glyph-766d8081-ns")} />

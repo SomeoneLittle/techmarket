@@ -71,15 +71,15 @@ export function Product1() {
             <header className="pp-header">
               <div id="dpt-seller">
                 <section aria-label="Seller" className="pp-seller dpp-seller">
-                  <a href="https://cubebrush.co/theartgun" tabIndex={-1} aria-hidden="true" className="pp-seller-avatar">
+                  <Link tabIndex={-1} aria-hidden="true" className="pp-seller-avatar" href="/theartgun">
                     <img src={asset("/sites/cubebrush/img/small_e4a7e71fae-172e72be.png")} alt="" style={{"width": "100%", "height": "100%", "objectFit": "cover", "borderRadius": "inherit", "display": "block"} as React.CSSProperties} />
-                  </a>
+                  </Link>
                   <div className="pp-seller-info">
                     <div className="dpp-seller-by">
                       {"by "}
-                      <a href="https://cubebrush.co/theartgun">
+                      <Link href="/theartgun">
                         TheArtGun
-                      </a>
+                      </Link>
                     </div>
                     <div className="dpp-seller-by">
                       {"in "}

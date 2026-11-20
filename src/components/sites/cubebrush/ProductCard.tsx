@@ -9,6 +9,9 @@ import { DEMO_NOTICE, toast } from "./state/toast";
 const SIZES =
   "(min-width: 1802px) 272px, (min-width: 1600px) calc((100vw - 170px) / 6), (min-width: 1511px) 272px, (min-width: 1280px) calc((94.8vw - 72px) / 5), (min-width: 1205px) 272px, (min-width: 960px) calc((94.8vw - 54px) / 4), (min-width: 899px) 272px, (min-width: 770px) calc((94.8vw - 36px) / 3), calc((100vw - 76px) / 3)";
 
+/** Seller stores that have a local page in this clone. */
+const LOCAL_STORES = new Set(["theartgun", "alwayshungry"]);
+
 const icon = (id: string) => asset(`/sites/cubebrush/icons.svg#${id}`);
 
 function ProductLink({ p, className, children, ...rest }: { p: Product; className?: string; children?: React.ReactNode; "aria-hidden"?: boolean; tabIndex?: number }) {
@@ -76,9 +79,15 @@ export function ProductCard({ p, purchased = false }: { p: Product; purchased?: 
         </div>
         <div className="cb-pcard-byline">
           {"by "}
-          <a className="cb-pcard-store" data-store={p.store} href={`https://cubebrush.co/${p.store}`} target="_blank" rel="noopener">
-            {p.storeName}
-          </a>
+          {LOCAL_STORES.has(p.store) ? (
+            <Link className="cb-pcard-store" data-store={p.store} href={`/${p.store}`}>
+              {p.storeName}
+            </Link>
+          ) : (
+            <a className="cb-pcard-store" data-store={p.store} href={`https://cubebrush.co/${p.store}`} target="_blank" rel="noopener">
+              {p.storeName}
+            </a>
+          )}
           {p.category ? ` in ${p.category}` : null}
         </div>
         <button aria-label="Choose a wishlist" className="dc-save-more" type="button" onClick={() => toast(DEMO_NOTICE)}>

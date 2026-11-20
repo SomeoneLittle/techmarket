@@ -14,16 +14,24 @@ account cabinet (`/account`). The session is kept in `localStorage` only.
 
 ## Routes
 
-| Source (cubebrush.co) | Local route | Notes |
-| --- | --- | --- |
-| `/` | `/` | Home: hero, weekly freebies, categories, sell band, popular products (tabs), daily picks |
-| `/marketplace` | `/marketplace` | Featured carousel, tabs, filters panel, 20 sample products |
-| `/users/sign_in` | `/users/sign_in` | Demo login form (111 / 111) |
-| `/theartgun/products/rwe03q/…` | same path | Product page: gallery, licences, tabs |
-| `/alwayshungry/products/ae75sq/…` | same path | Product page |
-| — | `/account` | Demo cabinet: library, wishlist, orders, settings |
+Local paths mirror cubebrush.co:
 
-Product cards without a local page link to the original product on cubebrush.co.
+| Area | Routes |
+| --- | --- |
+| Shop | `/`, `/marketplace`, `/theartgun/products/rwe03q/…`, `/alwayshungry/products/ae75sq/…` |
+| Stores | `/store` (official), `/theartgun`, `/alwayshungry` |
+| Blog | `/blog`, `/blog/what-makes-an-asset-game-ready`, `/blog/earn-as-a-cubebrush-affiliate` |
+| Sell / Earn | `/open_store`, `/become_partner` |
+| Company | `/about`, `/contacts`, `/licenses`, `/terms`, `/privacy`, `/distribution-agreement`, `/partner-agreement` |
+| Account | `/users/sign_in`, `/users/sign_up`, `/users/password/new`, `/account` (demo cabinet) |
+
+Product cards, blog posts and stores without a local page link to the original site.
+
+## Responsive
+
+The source serves a separate mobile build to phones. Here the desktop markup is adapted
+with `public/sites/cubebrush/css/responsive.css` (≤1024 px tablet, ≤760 px phone):
+compact header, full-width mega menu, one card per row, swipeable rails, stacked heroes.
 
 ## Development
 
@@ -39,7 +47,8 @@ push to `main`.
 
 ## Layout
 
-- `src/app/(group)/layout.tsx` — one root layout per page type (each needs its own `<body>` attributes for the source CSS scoping)
+- `src/app/` — one root layout; each page sets the source's `<body>` attributes (CSS scoping) via `PageAttrs`
+- `scripts/flatten-rsc.mjs` — post-build fix so client-side navigation finds the exported RSC segment files
 - `src/components/sites/cubebrush/` — transcribed page sections, shared chrome, product card, demo session/toast state
 - `public/sites/cubebrush/` — the source site's stylesheet, Mulish fonts, icon sprite and images
 

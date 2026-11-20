@@ -64,15 +64,15 @@ export function Product2() {
             <header className="pp-header">
               <div id="dpt-seller">
                 <section aria-label="Seller" className="pp-seller dpp-seller">
-                  <a href="https://cubebrush.co/alwayshungry" tabIndex={-1} aria-hidden="true" className="pp-seller-avatar">
+                  <Link tabIndex={-1} aria-hidden="true" className="pp-seller-avatar" href="/alwayshungry">
                     <img src={asset("/sites/cubebrush/img/small_366960ee37-81134adc.jpg")} alt="" style={{"width": "100%", "height": "100%", "objectFit": "cover", "borderRadius": "inherit", "display": "block"} as React.CSSProperties} />
-                  </a>
+                  </Link>
                   <div className="pp-seller-info">
                     <div className="dpp-seller-by">
                       {"by "}
-                      <a href="https://cubebrush.co/alwayshungry">
+                      <Link href="/alwayshungry">
                         Arthur Zugrov
-                      </a>
+                      </Link>
                     </div>
                     <div className="dpp-seller-by">
                       {"in "}

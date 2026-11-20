@@ -101,9 +101,9 @@ export function SignInSection() {
                   Remember me
                 </span>
               </label>
-              <a className="ah-link" href="https://cubebrush.co/users/password/new">
+              <Link className="ah-link" href="/users/password/new">
                 Forgot password?
-              </a>
+              </Link>
             </div>
             <button className="ah-submit" type="submit">
               Sign in
@@ -112,7 +112,7 @@ export function SignInSection() {
         </div>
         <p className="ah-switch">
           {"Don't have an account? "}
-          <Link className="ah-link" href="/users/sign_in">
+          <Link className="ah-link" href="/users/sign_up">
             Create account
           </Link>
         </p>

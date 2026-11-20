@@ -1111,5 +1111,124 @@ export const products: Record<string, Product> = {
     "price": {
       "kind": "free"
     }
+  },
+  "d9q6yq": {
+    "id": "d9q6yq",
+    "href": "/advanches/products/d9q6yq/gesturedrawing",
+    "internal": false,
+    "title": "GestureDrawing!",
+    "store": "advanches",
+    "storeName": "advanches",
+    "category": "Tools",
+    "img": "/sites/cubebrush/img/webp_wide_thumb_c8981cb890-fbcdcefe.webp",
+    "alt": "GestureDrawing! cover",
+    "video": false,
+    "fill": "96%",
+    "ratingLabel": "Rated 4.8 out of 5",
+    "likes": null,
+    "price": {
+      "kind": "normal",
+      "now": "$15"
+    },
+    "reviews": "(241)"
+  },
+  "qtejoq": {
+    "id": "qtejoq",
+    "href": "/grafit/products/qtejoq/graceful-gestures-reference-pack",
+    "internal": false,
+    "title": "Graceful Gestures Reference Pack",
+    "store": "grafit",
+    "storeName": "grafitstudio",
+    "category": "2D assets",
+    "img": "/sites/cubebrush/img/webp_wide_thumb_de8473a5fe-e84369bf.webp",
+    "alt": "Graceful Gestures Reference Pack cover",
+    "video": false,
+    "fill": "0%",
+    "ratingLabel": "Rated 0.0 out of 5",
+    "likes": null,
+    "price": {
+      "kind": "normal",
+      "now": "$13"
+    },
+    "reviews": "(1)"
+  },
+  "7cs5a": {
+    "id": "7cs5a",
+    "href": "/polyasset3d/products/7cs5a/mango-tree-pack-bonus",
+    "internal": false,
+    "title": "Mango Tree Pack + Bonus",
+    "store": "polyasset3d",
+    "storeName": "polyasset3d",
+    "category": "3D assets",
+    "img": "/sites/cubebrush/img/webp_wide_thumb_ceaa393130-4cb55942.webp",
+    "alt": "Mango Tree Pack + Bonus cover",
+    "video": false,
+    "fill": "0%",
+    "ratingLabel": "Rated 0.0 out of 5",
+    "likes": null,
+    "price": {
+      "kind": "normal",
+      "now": "$2.99"
+    }
+  },
+  "exmq7g": {
+    "id": "exmq7g",
+    "href": "/tomlopez/products/exmq7g/nz-ref-pack-mountains-350-royalty-free-photos",
+    "internal": false,
+    "title": "NZ Ref Pack - Mountains - 350+ Royalty Free Photos",
+    "store": "tomlopez",
+    "storeName": "tomlopez",
+    "category": "2D assets",
+    "img": "/sites/cubebrush/img/webp_wide_thumb_81112809be-8151540d.webp",
+    "alt": "NZ Ref Pack - Mountains - 350+ Royalty Free Photos cover",
+    "video": false,
+    "fill": "100%",
+    "ratingLabel": "Rated 5.0 out of 5",
+    "likes": null,
+    "price": {
+      "kind": "normal",
+      "now": "$4"
+    },
+    "reviews": "(1)"
+  },
+  "yfr61w": {
+    "id": "yfr61w",
+    "href": "/tomlopez/products/yfr61w/nz-ref-pack-water-350-royalty-free-photos",
+    "internal": false,
+    "title": "NZ Ref Pack - Water - 350+ Royalty Free Photos",
+    "store": "tomlopez",
+    "storeName": "tomlopez",
+    "category": "2D assets",
+    "img": "/sites/cubebrush/img/webp_wide_thumb_01afa64a74-5b886a47.webp",
+    "alt": "NZ Ref Pack - Water - 350+ Royalty Free Photos cover",
+    "video": false,
+    "fill": "0%",
+    "ratingLabel": "Rated 0.0 out of 5",
+    "likes": null,
+    "price": {
+      "kind": "normal",
+      "now": "$4"
+    }
+  },
+  "rwe03q": {
+    "id": "rwe03q",
+    "href": "/theartgun/products/rwe03q/gunquin-the-virtual-art-mannequin",
+    "internal": true,
+    "title": "Gunquin the Virtual Art Mannequin",
+    "store": "theartgun",
+    "storeName": "TheArtGun",
+    "category": "3D assets",
+    "img": "/sites/cubebrush/img/webp_wide_thumb_6a8ae1d625-63b47165.webp",
+    "alt": "Gunquin the Virtual Art Mannequin cover",
+    "video": true,
+    "fill": "100%",
+    "ratingLabel": "Rated 5.0 out of 5",
+    "likes": "1.09K",
+    "price": {
+      "kind": "normal",
+      "now": "$80"
+    },
+    "reviews": "(21)",
+    "comments": "4"
   }
 };

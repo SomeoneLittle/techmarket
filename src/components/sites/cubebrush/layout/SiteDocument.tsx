@@ -14,28 +14,24 @@ export const siteMetadata: Metadata = {
 
 const THEME_SCRIPT = `(function(){try{var t=localStorage.getItem('cb_theme_desktop');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
 
-type Props = {
-  children: React.ReactNode;
-  bodyClass?: string;
-  pageCss?: string;
-  mainClass?: string;
-};
+type Props = { children: React.ReactNode };
 
 /** Root document shared by every route group (each group needs its own <body> attributes). */
-export function SiteDocument({ children, bodyClass, pageCss, mainClass }: Props) {
+export function SiteDocument({ children }: Props) {
   return (
     <html data-theme="dark" lang="en" suppressHydrationWarning>
       <head>
         <link rel="stylesheet" href={asset("/sites/cubebrush/css/site.css")} />
+        <link rel="stylesheet" href={asset("/sites/cubebrush/css/responsive.css")} />
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
-      <body className={bodyClass} data-cb-page-css={pageCss} data-cb-state="guest" suppressHydrationWarning>
+      <body data-cb-state="guest" suppressHydrationWarning>
         <a className="cb-skip" href="#main">
           Skip to content
         </a>
         <div className="dh-paper-bg">
           <Header />
-          <main className={mainClass} id="main">
+          <main id="main" suppressHydrationWarning>
             <ToastHost />
             {children}
           </main>

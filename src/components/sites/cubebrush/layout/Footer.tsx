@@ -60,30 +60,30 @@ export function Footer() {
               Company
             </h2>
             <div className="hm-footer-col-list">
-              <a className="cb-official-store-footer" href="https://cubebrush.co/store">
+              <Link className="cb-official-store-footer" href="/store">
                 Cubebrush Store
-              </a>
-              <a href="https://cubebrush.co/about">
+              </Link>
+              <Link href="/about">
                 About
-              </a>
-              <a href="https://cubebrush.co/licenses">
+              </Link>
+              <Link href="/licenses">
                 Licenses
-              </a>
-              <a href="https://cubebrush.co/distribution-agreement">
+              </Link>
+              <Link href="/distribution-agreement">
                 Distribution Agreement
-              </a>
-              <a href="https://cubebrush.co/partner-agreement">
+              </Link>
+              <Link href="/partner-agreement">
                 Partner Agreement
-              </a>
-              <a href="https://cubebrush.co/terms">
+              </Link>
+              <Link href="/terms">
                 Terms of Service
-              </a>
-              <a href="https://cubebrush.co/privacy">
+              </Link>
+              <Link href="/privacy">
                 Privacy Policy
-              </a>
-              <a href="https://cubebrush.co/contacts">
+              </Link>
+              <Link href="/contacts">
                 Contact us
-              </a>
+              </Link>
               <a href="https://support.cubebrush.co/hc/en-us">
                 Help center
               </a>
@@ -94,15 +94,15 @@ export function Footer() {
               Community
             </h2>
             <div className="hm-footer-col-list">
-              <a href="https://cubebrush.co/open_store">
+              <Link href="/open_store">
                 Open a store
-              </a>
-              <a href="https://cubebrush.co/become_partner">
+              </Link>
+              <Link href="/become_partner">
                 Become a partner
-              </a>
-              <a href="https://cubebrush.co/blog">
+              </Link>
+              <Link href="/blog">
                 Blog
-              </a>
+              </Link>
               <Link href="/users/sign_in">
                 Sign in
               </Link>

@@ -1,0 +1,174 @@
+/*
+ * Responsive layer for the clone.
+ * The source serves a separate mobile build to phones; this file adapts the desktop markup
+ * to tablet/phone widths following that mobile design (compact header, single-column cards,
+ * 2-column category list, swipeable rails, stacked footer).
+ */
+
+/* ---------- tablet ---------- */
+@media (max-width: 1024px) {
+  .dh-nav > a { display: none; }
+  .dh-kbd { display: none; }
+  .dh-chrome-inner { gap: 12px; }
+  html body .dh-search { min-width: 150px !important; flex: 1 1 200px !important; }
+  .dh-search input { min-width: 0; }
+  html body .dh-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  html body .dh-rail { grid-auto-columns: calc((100% - 2 * var(--pad) - 18px) / 2.3); }
+}
+
+@media (max-width: 900px) and (min-width: 761px) {
+  html body .dh-actions .dh-signin { display: none !important; }
+  html body .dh-wordmark { display: none !important; }
+}
+
+/* ---------- phone / small tablet ---------- */
+@media (max-width: 760px) {
+  :root { --gut: 16px; }
+
+  /* header: logo + marketplace + theme + hamburger, search on its own row */
+  .dh-chrome-inner { flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+  .dh-logo { order: 1; }
+  .dh-nav { order: 2; }
+  .dh-spacer { order: 3; flex: 1 1 0; min-width: 0; }
+  .dh-actions .dh-iconbtn { display: none; }
+  .dh-nav { min-width: 0; }
+  .dh-actions { order: 4; gap: 6px; }
+  .dh-search { order: 5; flex: 1 1 100%; max-width: none; height: 42px; }
+  html body .dh-actions .dh-signin,
+  html body .dh-actions .dh-signup { display: none !important; }
+  .dh-wordmark { font-size: 18px; }
+  .dh-market-toggle { font-size: 12px; }
+
+  /* marketplace mega menu becomes a full-width sheet */
+  html body .dh-market-panel {
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    border-radius: 0 0 16px 16px;
+    max-height: calc(100dvh - var(--market-top, 120px)) !important;
+  }
+  html body .dh-market-grid { grid-template-columns: 1fr 1fr !important; }
+  html body .dh-market-group.is-half { grid-column: span 2; }
+  html body .dh-market-feature img { width: 96px; height: auto; }
+
+  /* section rhythm */
+  html body .dh-section { padding: 32px var(--gut); }
+  html body .dh-sechead { flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+  html body .dh-sechead h2 { font-size: 28px; }
+
+  /* home hero */
+  html body .dh-hero { padding-left: var(--gut); padding-right: var(--gut); }
+  html body .dh-intents { grid-template-columns: 1fr; gap: 14px; }
+
+  /* product grids: one card per row like the source mobile build */
+  html body .dh-grid,
+  html body .dh-grid.is-2rows { grid-template-columns: 1fr; gap: 16px; }
+  html body .dh-grid.is-2rows > li:nth-child(n) { display: block; }
+
+  /* rails: swipe, one and a bit cards visible, no arrows */
+  html body .dh-rail { grid-auto-columns: 82%; scroll-snap-type: x mandatory; cursor: auto; }
+  html body .dh-rail > li { scroll-snap-align: start; }
+  html body .dh-rail-wrap .dh-arrow { display: none; }
+
+  /* categories: 2-column list with icon tile */
+  html body .dh-cats { grid-template-columns: 1fr 1fr; gap: 10px; }
+  html body .dh-cat { aspect-ratio: auto; min-height: 64px; }
+
+  /* sell band */
+  html body .dh-band { padding: 28px 22px; }
+  html body .dh-band-art { display: none; }
+
+  /* tabs scroll horizontally */
+  html body .dh-tabs,
+  html body .dh-toolbar .dh-tabs,
+  html body .pp-tabs,
+  html body .bl-tabs { overflow-x: auto; scrollbar-width: none; gap: 20px; }
+  html body .dh-tabs::-webkit-scrollbar,
+  html body .pp-tabs::-webkit-scrollbar { display: none; }
+
+  /* marketplace */
+  html body .dh-toolbar-inner { flex-wrap: wrap; height: auto; padding: 10px 0; row-gap: 8px; }
+  html body .dh-toolbar-right { width: 100%; }
+  html body .dh-search-pill { flex: 1 1 auto; }
+  html body .dmp-hero-inner { padding-left: 0; padding-right: 0; }
+  html body .dmp-carousel .dh-arrow { display: none; }
+  html body .dmp-slide-copy { left: 16px; right: 16px; bottom: 16px; max-width: none; }
+  html body .dmp-slide-copy h2 { font-size: 22px; }
+  html body .dmp-slide-copy p { display: none; }
+  html body .dh-frow { grid-template-columns: 1fr; }
+
+  /* product page */
+  html body .dpp-wrap { padding-left: var(--gut); padding-right: var(--gut); }
+  html body .dpp-cols { grid-template-columns: 1fr; gap: 24px; margin-top: 12px; }
+  html body .pp-gallery-frame { border-radius: 10px; }
+  html body .pp-title { font-size: 24px; }
+  html body .dpt-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* footer */
+  html body .hm-footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 16px; }
+  html body .hm-footer-grid > div:first-child { grid-column: span 2; }
+
+  /* auth + cabinet */
+  html body .ah-card { padding: 22px 18px; }
+  html body .dh-userhero .dh-sechead { align-items: flex-start; }
+  html body .tm-acct-id h2 { font-size: 24px; }
+
+  /* content pages */
+  html body .os-hero,
+  html body .bp-hero-inner,
+  html body .ab-hero,
+  html body .ab-location,
+  html body .dc-contact-hero,
+  html body .bp-calc-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 20px;
+    text-align: left;
+  }
+  html body .os-hero > *,
+  html body .bp-hero-inner > *,
+  html body .ab-hero > *,
+  html body .ab-location > *,
+  html body .dc-contact-hero > *,
+  html body .bp-calc-card > * { width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+  html body .os-hero h1,
+  html body .bp-hero h1,
+  html body .ab-hero h1 { font-size: 38px !important; }
+  html body .os-hero-art,
+  html body .ab-hero-art,
+  html body .bp-hero-art { max-width: 70% !important; margin: 0 auto; }
+  html body .os-proof,
+  html body .bp-proof { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 8px; }
+  html body .os-proof-cell,
+  html body .bp-proof-cell { min-width: 0 !important; padding-left: 4px !important; padding-right: 4px !important; }
+  html body .os-proof-num,
+  html body .bp-proof-cell strong { font-size: 22px !important; }
+  html body .os-slide { grid-template-columns: 1fr !important; gap: 18px !important; padding: 24px 20px !important; }
+  html body .os-slide > * { min-width: 0; max-width: 100%; }
+  html body .os-rev-grid,
+  html body .ab-stats,
+  html body .ab-promises,
+  html body .ab-tracks,
+  html body .ct-grid,
+  html body .bp-steps { grid-template-columns: 1fr !important; }
+  html body .bp-calc-card,
+  html body .ab-location { grid-template-columns: 1fr !important; }
+  html body .lc-compare { grid-template-columns: 1fr !important; }
+  html body .bl-featured,
+  html body .bl-list { grid-template-columns: 1fr !important; }
+  html body .bl-card-hero { grid-column: auto !important; }
+  html body .os-trust-marks,
+  html body .os-trust-cryptos { flex-wrap: wrap !important; justify-content: center !important; row-gap: 10px; }
+  html body .os-trust-mid { white-space: normal !important; text-align: center; }
+  html body .os-trust-line { display: none !important; }
+  html body #main { overflow-x: clip; }
+  html body .ms-toolbar,
+  html body .ms-crumb { flex-wrap: wrap; row-gap: 8px; }
+}
+
+@media (max-width: 420px) {
+  .dh-market-toggle { letter-spacing: 1px; }
+  html body .dh-hero h1 { font-size: 34px; }
+  html body .hm-footer-social { flex-wrap: wrap; }
+}
